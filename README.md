@@ -5,7 +5,7 @@ Sitio estático (HTML, CSS y JavaScript, sin dependencias ni instalación) que m
 ## Publicarlo en GitHub Pages
 
 1. Creá un repositorio nuevo en GitHub (por ejemplo `prohs`).
-2. Subí **el contenido de esta carpeta** a la raíz del repositorio (`index.html`, `assets/`, `.nojekyll`, `README.md`).
+2. Subí **el contenido de esta carpeta** a la raíz del repositorio (`index.html`, `assets/`, `.nojekyll`, `README.md`). Para subir todo de una vez, con subcarpetas, usá la herramienta `Subir-a-GitHub.html`.
 3. Entrá en **Settings → Pages**.
 4. En *Build and deployment* elegí **Deploy from a branch**, rama `main` y carpeta `/ (root)`.
 5. Guardá. En un par de minutos el sitio queda en `https://TU-USUARIO.github.io/prohs/`.
@@ -20,5 +20,5 @@ Sitio estático (HTML, CSS y JavaScript, sin dependencias ni instalación) que m
 ## Notas
 
 - Las capturas y los informes usan datos ficticios del Modo demo.
-- Probado en Chrome, Firefox y Safari de escritorio y celular. Respeta la preferencia de "reducir movimiento" del sistema.
+- Probado en Chrome (pantalla de escritorio y de celular). Respeta la preferencia de "reducir movimiento" del sistema.
 - Peso total aproximado: 35 MB (las capturas ampliables son las que más pesan).

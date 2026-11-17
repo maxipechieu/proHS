@@ -24,7 +24,7 @@
 <nav class="top" id="nav"><div class="wrap in">
   <a href="#top" class="logo"><img src="assets/img/logo-mark.svg" alt="" width="30" height="37"><div>proHS<small>consulting</small></div></a>
   <div class="links">
-    <a href="#modulos">Módulos</a><a href="#informes">Informes</a><a href="#movil">Celular</a><a href="#admin">Administración</a><a href="#autor">Autor</a>
+    <a href="#modulos">Módulos</a><a href="#informes">Informes</a><a href="#equipo">Equipo</a><a href="#movil">Celular</a><a href="#admin">Administración</a><a href="#autor">Autor</a>
     <a href="#contacto" class="btn pri sm"><i class="fa-solid fa-paper-plane"></i> Contacto</a>
   </div>
 </div></nav>
@@ -122,6 +122,20 @@
       <p>Cada persona ve solo los módulos que su perfil habilita. Cinco perfiles de fábrica y los propios que necesites.</p>
       <div class="tags"><span>Usuarios</span><span>Auditoría</span><span>Copias</span></div>
     </div>
+    <div class="bx w3 rv" style="--c:#2563eb">
+      <div class="ic"><i class="fa-solid fa-comments"></i></div>
+      <h3>Chat en vivo y mensajes del equipo</h3>
+      <p>Chat general y privado con fotos, lista de quién está conectado y un buzón con respuestas y adjuntos. Todo dentro del sistema.</p>
+      <div class="tags"><span>Chat en vivo</span><span>Buzón</span><span>Avisos</span></div>
+      <a class="more" href="#equipo">Ver cómo funciona <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="bx w3 rv" style="--c:#0891b2;--d:.08s">
+      <div class="ic"><i class="fa-regular fa-comment-dots"></i></div>
+      <h3>Comentarios en cada registro</h3>
+      <p>Cada incidente, acción o ficha tiene su hilo de comentarios. Avisás a quien corresponda y la conversación queda pegada al registro.</p>
+      <div class="tags"><span>Hilos</span><span>Avisar a…</span><span>Con permisos</span></div>
+      <a class="more" href="#equipo">Ver cómo funciona <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
     <div class="bx w3 rv" style="--c:#16a34a">
       <div class="ic"><i class="fa-solid fa-mobile-screen"></i></div>
       <h3>También en el celular</h3>
@@ -160,6 +174,124 @@
   <div class="rnav rv"><button id="rprev" aria-label="Anterior"><i class="fa-solid fa-arrow-left"></i></button><button id="rnext" aria-label="Siguiente"><i class="fa-solid fa-arrow-right"></i></button></div>
 </div>
 <div class="rtrack" id="rtrack"></div></section>
+
+<!-- EQUIPO -->
+<section class="team light" id="equipo"><div class="wrap">
+  <div class="thead">
+    <div>
+      <span class="eyebrow rv">Comunicación del equipo</span>
+      <h2 class="title rv" style="--d:.06s">Toda la obra hablando <span style="color:#1e40af">en el mismo lugar</span>.</h2>
+      <p class="lead rv" style="--d:.12s">Chat en vivo, buzón de mensajes y comentarios en cada registro. Cada aviso queda dentro del sistema, junto al incidente, la acción o el informe del que se habla, sin depender de grupos de WhatsApp.</p>
+      <div class="tpills rv" style="--d:.18s">
+        <span><i class="fa-solid fa-comments"></i> Chat en vivo</span><span><i class="fa-solid fa-envelope"></i> Buzón</span><span><i class="fa-regular fa-comment-dots"></i> Comentarios</span><span><i class="fa-solid fa-bell"></i> Avisos</span><span><i class="fa-solid fa-clock-rotate-left"></i> Registro de cambios</span>
+      </div>
+    </div>
+    <div class="live rv r" id="live" aria-label="Ejemplo animado de chat">
+      <div class="lh"><div class="lavs"><span class="lav" style="background:#16a34a">LG</span><span class="lav" style="background:#c2410c">DF</span><span class="lav" style="background:#0d9488">CR</span></div><div><b>Chat general</b><small><i class="dot"></i> 3 conectados</small></div></div>
+      <div class="lb">
+        <div class="msg"><span class="who" style="color:#16a34a">Laura Giménez</span>Arrancamos el hormigonado a las 8:30. Necesito el andamio revisado antes.<time>08:12</time></div>
+        <div class="msg"><span class="who" style="color:#c2410c">Diego Ferreyra</span>Ya revisé andamios y arneses. Subo el checklist de EPP.<time>08:15</time></div>
+        <div class="msg"><span class="who" style="color:#0d9488">Carlos Ruiz</span><span class="att"><i class="fa-solid fa-image"></i> corte-puesto-2.jpg</span>Falta la pantalla facial en el puesto 2.<time>08:26</time></div>
+        <div class="msg me">Perfecto. Charla sobre trabajo en altura a las 14.<time>09:40</time></div>
+        <div class="typing"><i></i><i></i><i></i> Diego está escribiendo…</div>
+      </div>
+      <div class="lf"><i class="fa-solid fa-paperclip"></i><span>Escribí un mensaje…</span><b><i class="fa-solid fa-paper-plane"></i></b></div>
+      <div class="lchip c1"><i class="fa-solid fa-envelope"></i> 3 mensajes sin leer</div>
+      <div class="lchip c2"><i class="fa-regular fa-comment-dots"></i> Comentario en Incidentes</div>
+    </div>
+  </div>
+
+  <div class="ttabs rv" id="ttabs" role="tablist">
+    <button class="on" data-t="chat" style="--c:#2563eb" role="tab"><i class="fa-solid fa-comments"></i> Chat en vivo</button>
+    <button data-t="buzon" style="--c:#4f46e5" role="tab"><i class="fa-solid fa-envelope"></i> Buzón</button>
+    <button data-t="com" style="--c:#0891b2" role="tab"><i class="fa-regular fa-comment-dots"></i> Comentarios</button>
+    <button data-t="avisos" style="--c:#d97706" role="tab"><i class="fa-solid fa-bell"></i> Avisos y control</button>
+  </div>
+
+  <div class="tpanels">
+    <article class="tp on" id="tp-chat" style="--c:#2563eb">
+      <div class="tcopy">
+        <h3>Chat en vivo con todo tu equipo</h3>
+        <p>Un chat general para toda la cuenta y conversaciones privadas, con la lista de quién está conectado en ese momento. Funciona en la computadora y en el celular.</p>
+        <ul class="tl">
+          <li><i class="fa-solid fa-circle-dot"></i><span><b>Quién está conectado:</b> en línea, ausente (con "visto hace…") o desconectado.</span></li>
+          <li><i class="fa-solid fa-ellipsis"></i><span><b>"Escribiendo…" en vivo</b> y contador de mensajes sin leer por conversación.</span></li>
+          <li><i class="fa-solid fa-image"></i><span><b>Fotos y archivos</b> en el mensaje, con vista previa en el chat (hasta 4 por mensaje).</span></li>
+          <li><i class="fa-solid fa-window-restore"></i><span><b>Varias ventanas</b> abiertas a la vez, como en un mensajero.</span></li>
+          <li><i class="fa-solid fa-pen-to-square"></i><span><b>Editar o eliminar</b> mensajes propios; la administración puede moderar y queda constancia.</span></li>
+        </ul>
+      </div>
+      <div class="tvis v2">
+        <figure class="tf big" data-zoom data-group="team" data-full="assets/img/full/com-ventanas.jpg" data-title="Chat general y conversación privada" data-cap="Dos conversaciones abiertas: el chat general (con foto y aviso de “escribiendo…”) y un mensaje privado con foto del encofrado."><img src="assets/img/thumb/com-ventanas.jpg" alt="Chat general y conversación privada" loading="lazy"><figcaption>Chat general y conversación privada</figcaption></figure>
+        <figure class="tf tall" data-zoom data-group="team" data-full="assets/img/full/com-lista.jpg" data-title="Lista de conectados" data-cap="Conversaciones y personas separadas en conectadas, ausentes y desconectadas, con los mensajes sin leer."><img src="assets/img/thumb/com-lista.jpg" alt="Lista de personas conectadas" loading="lazy"><figcaption>Quién está conectado</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="tp" id="tp-buzon" style="--c:#4f46e5">
+      <div class="tcopy">
+        <h3>Un buzón interno para lo importante</h3>
+        <p>Para lo que necesita asunto, adjuntos y respuesta ordenada: informes de inspección, vencimientos, convocatorias. Todo queda en hilos, dentro del sistema.</p>
+        <ul class="tl">
+          <li><i class="fa-solid fa-inbox"></i><span><b>Recibidos, Enviados y Papelera,</b> con filtros (no leídos, comentarios, mensajes) y buscador.</span></li>
+          <li><i class="fa-solid fa-users"></i><span><b>Redactá a una o varias personas,</b> o a todas las de un perfil con un clic.</span></li>
+          <li><i class="fa-solid fa-paperclip"></i><span><b>Hasta 8 adjuntos</b> por mensaje: informes en PDF, fotos, planillas.</span></li>
+          <li><i class="fa-solid fa-reply-all"></i><span><b>Responder y responder a todos:</b> la conversación queda en un solo hilo.</span></li>
+          <li><i class="fa-solid fa-check-double"></i><span><b>Confirmación de lectura</b> y contador de no leídos en la cabecera.</span></li>
+        </ul>
+      </div>
+      <div class="tvis v3">
+        <figure class="tf big" data-zoom data-group="team" data-full="assets/img/full/com-buzon-hilo.jpg" data-title="Buzón · hilo con respuesta" data-cap="Un mensaje con su respuesta en el mismo hilo, con la lista de destinatarios y la confirmación de lectura."><img src="assets/img/thumb/com-buzon-hilo.jpg" alt="Buzón con un hilo de mensajes" loading="lazy"><figcaption>Hilo con respuesta</figcaption></figure>
+        <figure class="tf" data-zoom data-group="team" data-full="assets/img/full/com-buzon-adjunto.jpg" data-title="Buzón · mensaje con informe adjunto" data-cap="El informe de inspección llega como PDF adjunto, listo para abrir."><img src="assets/img/thumb/com-buzon-adjunto.jpg" alt="Mensaje con informe PDF adjunto" loading="lazy"><figcaption>Informe PDF adjunto</figcaption></figure>
+        <figure class="tf" data-zoom data-group="team" data-full="assets/img/full/com-redactar.jpg" data-title="Buzón · redactar un mensaje" data-cap="Destinatarios sueltos o por perfil, asunto, mensaje y adjuntos."><img src="assets/img/thumb/com-redactar.jpg" alt="Redactar un mensaje" loading="lazy"><figcaption>Redactar</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="tp" id="tp-com" style="--c:#0891b2">
+      <div class="tcopy">
+        <h3>Comentarios en cada registro</h3>
+        <p>Cada incidente, acción y otros registros tiene su botón de comentarios con contador. La charla queda pegada al registro: quien lo abre dentro de un año ve qué se habló y quién lo verificó.</p>
+        <ul class="tl">
+          <li><i class="fa-regular fa-comment-dots"></i><span><b>Un hilo por registro,</b> con respuestas y el contador visible en la tarjeta.</span></li>
+          <li><i class="fa-solid fa-at"></i><span><b>"Avisar a…":</b> el comentario le llega al buzón de quien elijas, con acceso directo al registro.</span></li>
+          <li><i class="fa-solid fa-lock"></i><span><b>Respeta los permisos:</b> solo comentan y avisan personas con acceso a ese módulo.</span></li>
+          <li><i class="fa-solid fa-paperclip"></i><span><b>Con adjuntos</b> cuando hace falta una foto o un documento.</span></li>
+        </ul>
+      </div>
+      <div class="tvis v2b">
+        <figure class="tf big" data-zoom data-group="team" data-full="assets/img/full/com-comentarios-lista.jpg" data-title="Comentarios · botón en cada incidente" data-cap="Cada tarjeta tiene su botón de comentarios; el amarillo indica que ya hay conversación (3 comentarios)."><img src="assets/img/thumb/com-comentarios-lista.jpg" alt="Incidentes con botón de comentarios" loading="lazy"><figcaption>Botón de comentarios en cada incidente</figcaption></figure>
+        <figure class="tf" data-zoom data-group="team" data-full="assets/img/full/com-comentarios.jpg" data-title="Comentarios · conversación sobre un incidente" data-cap="La conversación sobre el incidente del andamio, con opción de avisar a personas del equipo."><img src="assets/img/thumb/com-comentarios.jpg" alt="Conversación de comentarios sobre un incidente" loading="lazy"><figcaption>Conversación sobre un registro</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="tp" id="tp-avisos" style="--c:#d97706">
+      <div class="tcopy">
+        <h3>Avisos a tiempo y control para la administración</h3>
+        <p>Nadie se entera tarde de un mensaje, y la administración puede ver qué se modificó. Cada perfil decide si usa los mensajes, y un perfil de solo consulta también puede chatear y comentar.</p>
+        <ul class="tl">
+          <li><i class="fa-solid fa-bell"></i><span><b>Avisos del sistema</b> de Windows o Android cuando llega un mensaje, aunque estés en otra ventana.</span></li>
+          <li><i class="fa-solid fa-globe"></i><span><b>También con el navegador cerrado</b> cuando el sistema está publicado con https.</span></li>
+          <li><i class="fa-solid fa-eye-slash"></i><span><b>Vos decidís</b> si el aviso muestra el texto del mensaje.</span></li>
+          <li><i class="fa-solid fa-clock-rotate-left"></i><span><b>Registro de cambios:</b> quién editó o eliminó mensajes de otras personas y cuándo.</span></li>
+          <li><i class="fa-solid fa-user-shield"></i><span><b>Habilitado por perfil</b> desde la administración de usuarios.</span></li>
+        </ul>
+      </div>
+      <div class="tvis v2c">
+        <figure class="tf tall" data-zoom data-group="team" data-full="assets/img/full/com-cuenta.jpg" data-title="Mi cuenta · avisos del sistema" data-cap="Pantalla Mi cuenta con los avisos del sistema activados y la opción de mostrar el texto del mensaje."><img src="assets/img/thumb/com-cuenta.jpg" alt="Mi cuenta con avisos del sistema" loading="lazy"><figcaption>Avisos del sistema</figcaption></figure>
+        <figure class="tf big" data-zoom data-group="team" data-full="assets/img/full/com-registro.jpg" data-title="Registro de cambios" data-cap="La administración ve quién editó o eliminó mensajes de otras personas."><img src="assets/img/thumb/com-registro.jpg" alt="Registro de cambios de mensajes" loading="lazy"><figcaption>Registro de cambios</figcaption></figure>
+      </div>
+    </article>
+  </div>
+
+  <div class="tmob">
+    <div class="tmh rv"><span class="eyebrow">Y en el celular</span><h3>La misma conversación, en el bolsillo</h3></div>
+    <div class="tphones">
+      <figure class="tph rv" data-zoom data-group="teamm" data-full="assets/img/full/com-m-lista.jpg" data-title="Celular · lista de conectados" style="--d:.04s"><div class="fr"><img src="assets/img/thumb/com-m-lista.jpg" alt="Lista de conectados en el celular" loading="lazy"></div><figcaption>Quién está conectado</figcaption></figure>
+      <figure class="tph rv" data-zoom data-group="teamm" data-full="assets/img/full/com-m-general.jpg" data-title="Celular · chat general" style="--d:.12s"><div class="fr"><img src="assets/img/thumb/com-m-general.jpg" alt="Chat general en el celular" loading="lazy"></div><figcaption>Chat con fotos</figcaption></figure>
+      <figure class="tph rv" data-zoom data-group="teamm" data-full="assets/img/full/com-m-buzon.jpg" data-title="Celular · buzón de mensajes" style="--d:.2s"><div class="fr"><img src="assets/img/thumb/com-m-buzon.jpg" alt="Buzón en el celular" loading="lazy"></div><figcaption>Buzón de mensajes</figcaption></figure>
+      <figure class="tph rv" data-zoom data-group="teamm" data-full="assets/img/full/com-m-comentarios.jpg" data-title="Celular · comentarios en un registro" style="--d:.28s"><div class="fr"><img src="assets/img/thumb/com-m-comentarios.jpg" alt="Comentarios en el celular" loading="lazy"></div><figcaption>Comentarios</figcaption></figure>
+    </div>
+  </div>
+</div></section>
 
 <!-- MOVIL -->
 <section class="mobile" id="movil"><div class="wrap">

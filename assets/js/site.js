@@ -224,4 +224,30 @@
       open: function (slides, idx) { s = slides; i = idx || 0; box.classList.add('open'); document.body.style.overflow = 'hidden'; render(); }
     };
   })();
+
+  /* ---------- comunicación del equipo: pestañas y chat animado ---------- */
+  (function () {
+    var tb = $('#ttabs'); if (!tb) return;
+    $$('button', tb).forEach(function (b) {
+      b.addEventListener('click', function () {
+        $$('button', tb).forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+        $$('.tp').forEach(function (p) { p.classList.toggle('on', p.id === 'tp-' + b.dataset.t); });
+      });
+    });
+    var live = $('#live'); if (!live) return;
+    var msgs = $$('.msg', live), typ = $('.typing', live), timers = [];
+    if (reduce) { msgs.forEach(function (m) { m.classList.add('on'); }); typ.classList.add('on'); return; }
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+    function play() {
+      timers.forEach(clearTimeout); timers = [];
+      msgs.forEach(function (m) { m.classList.remove('on'); }); typ.classList.remove('on');
+      msgs.forEach(function (m, k) { later(function () { m.classList.add('on'); }, 600 + k * 1500); });
+      later(function () { typ.classList.add('on'); }, 600 + msgs.length * 1500);
+      later(play, 600 + msgs.length * 1500 + 4200);
+    }
+    if ('IntersectionObserver' in window) {
+      var seen = false;
+      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting && !seen) { seen = true; play(); } else if (!e.isIntersecting && seen) { timers.forEach(clearTimeout); seen = false; } }); }, { threshold: .35 }).observe(live);
+    } else { play(); }
+  })();
 })();
