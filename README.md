@@ -19,6 +19,6 @@ Sitio estático (HTML, CSS y JavaScript, sin dependencias ni instalación) que m
 
 ## Notas
 
-- Las capturas y los informes usan datos ficticios del Modo demo.
+- Las capturas y los informes usan datos de ejemplo.
 - Probado en Chrome (pantalla de escritorio y de celular). Respeta la preferencia de "reducir movimiento" del sistema.
 - Peso total aproximado: 35 MB (las capturas ampliables son las que más pesan).
