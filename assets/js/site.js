@@ -51,7 +51,7 @@
   })();
 
   /* ---------- marquee ---------- */
-  var norms = ['Ley 19.587', 'Decreto 351/79', 'Decreto 911/96', 'Ley 24.557', 'Res. SRT 299/11', 'Res. SRT 463/09', 'Res. SRT 295/03', 'Res. SRT 37/10', 'Res. SRT 503/14', 'Res. SRT 550/11', 'Res. SRT 61/2023', 'ISO 9001:2015', 'ISO 45001', 'ISO 14001'];
+  var norms = ['Ley 19.587', 'Decreto 351/79', 'Decreto 911/96', 'Ley 24.557', 'Res. SRT 299/11', 'Res. SRT 463/09', 'Res. MTEySS 295/03', 'Res. SRT 37/10', 'Res. SRT 503/14', 'Res. SRT 550/11', 'Res. SRT 61/2023', 'ISO 9001:2015', 'ISO 45001', 'ISO 14001'];
   var mq = $('#marq'), mh = '';
   for (var k = 0; k < 2; k++) norms.forEach(function (n) { mh += '<span><i class="fa-solid fa-circle-check"></i>' + n + '</span>'; });
   mq.innerHTML = mh;
@@ -63,10 +63,14 @@
   }, 4200);
   var tilt = $('#tilt'), st = $('#stage3d');
   if (!reduce && matchMedia('(hover:hover)').matches) {
+    var tp = 0, te = null;
     st.addEventListener('mousemove', function (e) {
-      var r = st.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      tilt.style.transform = 'rotateY(' + (x * 9) + 'deg) rotateX(' + (-y * 7) + 'deg)';
-    });
+      te = e; if (tp) return;
+      tp = requestAnimationFrame(function () {
+        tp = 0; var r = st.getBoundingClientRect(), x = (te.clientX - r.left) / r.width - .5, y = (te.clientY - r.top) / r.height - .5;
+        tilt.style.transform = 'rotateY(' + (x * 9) + 'deg) rotateX(' + (-y * 7) + 'deg)';
+      });
+    }, { passive: true });
     st.addEventListener('mouseleave', function () { tilt.style.transform = ''; });
   }
 
@@ -141,10 +145,14 @@
   /* ---------- foto: efecto 3D leve ---------- */
   var pc = $('#pcard');
   if (!reduce && matchMedia('(hover:hover)').matches) {
+    var pp = 0, pe = null;
     pc.addEventListener('mousemove', function (e) {
-      var r = pc.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      pc.style.transform = 'perspective(900px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 8) + 'deg)';
-    });
+      pe = e; if (pp) return;
+      pp = requestAnimationFrame(function () {
+        pp = 0; var r = pc.getBoundingClientRect(), x = (pe.clientX - r.left) / r.width - .5, y = (pe.clientY - r.top) / r.height - .5;
+        pc.style.transform = 'perspective(900px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 8) + 'deg)';
+      });
+    }, { passive: true });
     pc.addEventListener('mouseleave', function () { pc.style.transform = ''; });
   }
 
@@ -365,4 +373,22 @@
     ['Subió la <b>constancia de afiliación a la ART</b> que figuraba como faltante.', 'La guía de requisitos lo marca como «Cumple» y sube el porcentaje cubierto.'],
     ['Adjuntó el <b>plano de evacuación</b> firmado, con su fecha de revisión.', 'Queda en el legajo de la obra, listo para el próximo informe o inspección.']
   ], ['Documento cargado', 'Constancia cargada', 'Plano adjuntado']);
+
+  /* ---------- modo liviano automático ---------- */
+  (function () {
+    var root = document.documentElement;
+    function setLite(on) { root.classList.toggle('lite', !!on); }
+    if (/[?&]lite=1/.test(location.search)) { setLite(true); return; }
+    if (/[?&]lite=0/.test(location.search)) return;
+    window.prohsLite = setLite;
+    var t0 = 0, n = 0, bad = 0, last = 0, start = 0;
+    function probe(t) {
+      if (!start) start = t;
+      if (last) { n++; if (t - last > 34) bad++; }
+      last = t;
+      if (t - start < 3500) requestAnimationFrame(probe);
+      else if (n > 20 && bad / n > .22) setLite(true);
+    }
+    setTimeout(function () { requestAnimationFrame(probe); }, 1800);
+  })();
 })();
