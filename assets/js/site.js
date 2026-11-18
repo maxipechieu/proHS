@@ -85,7 +85,7 @@
     C.mods.filter(function (m) { return m.cat === cat; }).forEach(function (m) {
       starts[m.id] = out.length;
       m.shots.forEach(function (s) { out.push({ src: F(s.img), title: m.title, win: s.win, cap: s.cap, desc: m.desc, ex: null, color: catOf(cat).color }); });
-      if (m.pdf) out.push({ src: 'assets/img/pdf/' + m.pdf + '.jpg', title: m.title + ' · Informe PDF', win: 'Primera página del informe', cap: 'Informe generado por el módulo con los datos de la demo.', desc: m.desc, ex: m.ex || null });
+      if (m.pdf) out.push({ src: 'assets/img/pdf/' + m.pdf + '.jpg', title: m.title + ' · Informe PDF', win: 'Primera página del informe', cap: 'Informe generado por el módulo con datos de ejemplo.', desc: m.desc, ex: m.ex || null });
     });
     return { slides: out, starts: starts };
   }
@@ -250,4 +250,119 @@
       new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting && !seen) { seen = true; play(); } else if (!e.isIntersecting && seen) { timers.forEach(clearTimeout); seen = false; } }); }, { threshold: .35 }).observe(live);
     } else { play(); }
   })();
+
+  /* ---------- video del simulador: se reproduce solo cuando se ve ---------- */
+  (function () {
+    var v = document.getElementById('plvid'); if (!v) return;
+    if (reduce) { v.controls = true; return; }
+    if (!('IntersectionObserver' in window)) { v.controls = true; return; }
+    new IntersectionObserver(function (es) { es.forEach(function (e) {
+      if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () { v.controls = true; }); } else { v.pause(); }
+    }); }, { threshold: .4 }).observe(v);
+  })();
+
+  /* ---------- nómina: lo que se carga en un módulo se refleja en la ficha ---------- */
+  function mkSim(stId, tabsSel, capId, CAPS, FLY) {
+    var st = document.getElementById(stId); if (!st) return;
+    var tabs = $$(tabsSel), lps = $$('.lp', st), rps = $$('.rp', st), cur = $('.cur', st), fly = $('.fly', st), cap = document.getElementById(capId);
+    var idx = 0, timers = [], running = false, gen = 0;
+    function later(fn, ms, g) { timers.push(setTimeout(function () { if (g === gen) fn(); }, ms)); }
+    function stopAll() { gen++; timers.forEach(clearTimeout); timers = []; }
+    function rel(el) {
+      var a = el.getBoundingClientRect(), b = st.getBoundingClientRect();
+      return { x: a.left - b.left, y: a.top - b.top, w: a.width, h: a.height };
+    }
+    function moveCur(el, fx, fy) {
+      var r = rel(el); cur.classList.add('on');
+      cur.style.transform = 'translate(' + (r.x + r.w * (fx == null ? .55 : fx)) + 'px,' + (r.y + r.h * (fy == null ? .6 : fy)) + 'px)';
+    }
+    function resetScenario(i) {
+      lps.forEach(function (l, k) { l.classList.toggle('on', k === i); });
+      rps.forEach(function (r, k) { r.classList.toggle('on', k === i); r.classList.remove('done'); $$('.nw', r).forEach(function (n) { n.classList.remove('flash'); }); $$('.cd', r).forEach(function (c) { c.classList.remove('hit'); }); });
+      var l = lps[i];
+      $$('.fld', l).forEach(function (n) { n.classList.remove('fill', 'act'); $('.tx', n).textContent = ''; });
+      $$('.ck', l).forEach(function (n) { n.classList.remove('on'); });
+      $$('.sg', l).forEach(function (n) { n.classList.remove('draw'); });
+      $$('.bt', l).forEach(function (n) { n.classList.remove('press'); });
+      $$('.tst', l).forEach(function (n) { n.classList.remove('on'); });
+      fly.className = 'fly'; fly.style.transform = ''; cur.className = 'cur';
+      tabs.forEach(function (b, k) { b.classList.toggle('on', k === i); b.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+      cap.innerHTML = '<span style="opacity:.55">…</span>';
+    }
+    function showCap(i) { cap.innerHTML = CAPS[i][0] + ' <br>' + CAPS[i][1] + '<small>Datos de ejemplo</small>'; }
+    function finish(i, instant) {
+      var r = rps[i]; r.classList.add('done');
+      if (!instant) { $$('.nw', r).forEach(function (n) { void n.offsetWidth; n.classList.add('flash'); }); }
+      var tg = $('[data-fly]', r); if (tg && !instant) tg.classList.add('hit');
+      showCap(i);
+    }
+    function complete(i) {   // estado final inmediato (sin movimiento)
+      resetScenario(i); var l = lps[i];
+      $$('.fld', l).forEach(function (n) { n.classList.add('fill'); $('.tx', n).textContent = n.dataset.t || ''; });
+      $$('.ck[data-step]', l).forEach(function (n) { n.classList.add('on'); });
+      $$('.sg', l).forEach(function (n) { n.classList.add('draw'); });
+      finish(i, true);
+    }
+    function play(i) {
+      stopAll(); var g = gen; idx = i; resetScenario(i);
+      var l = lps[i], t = 400, steps = $$('[data-step]', l);
+      later(function () { cur.style.transition = 'none'; var r = rel(l); cur.style.transform = 'translate(' + (r.x + r.w * .5) + 'px,' + (r.y + 40) + 'px)'; void cur.offsetWidth; cur.style.transition = ''; cur.classList.add('on'); }, 10, g);
+      steps.forEach(function (el) {
+        var kind = el.classList.contains('fld') ? 'fld' : el.classList.contains('ck') ? 'ck' : el.classList.contains('sg') ? 'sg' : 'bt';
+        if (kind === 'fld') {
+          var txt = el.dataset.t || '';
+          later(function () { moveCur(el, .3, .55); }, t, g);
+          later(function () { el.classList.add('act', 'fill'); var tx = $('.tx', el), n = 0; (function typ() { if (g !== gen) return; n++; tx.textContent = txt.slice(0, n); if (n < txt.length) timers.push(setTimeout(typ, 42)); else el.classList.remove('act'); })(); }, t + 750, g);
+          t += 750 + 80 + txt.length * 42 + 260;
+        } else if (kind === 'ck') {
+          later(function () { moveCur(el, .1, .5); }, t, g);
+          later(function () { cur.classList.remove('click'); void cur.offsetWidth; cur.classList.add('click'); el.classList.add('on'); }, t + 760, g);
+          t += 760 + 420;
+        } else if (kind === 'sg') {
+          later(function () { moveCur(el, .15, .65); }, t, g);
+          later(function () { el.classList.add('draw'); }, t + 700, g);
+          t += 700 + 1100;
+        } else {
+          later(function () { moveCur(el, .5, .5); }, t, g);
+          later(function () { cur.classList.remove('click'); void cur.offsetWidth; cur.classList.add('click'); el.classList.add('press'); $('.tst', l).classList.add('on'); }, t + 800, g);
+          later(function () { el.classList.remove('press'); }, t + 1000, g);
+          t += 800 + 700;
+        }
+      });
+      // vuelo del dato hacia la ficha
+      var btn = $('.bt', l);
+      later(function () {
+        cur.classList.remove('on');
+        var b = rel(btn), tg = $('[data-fly]', rps[i]) || rps[i], d = rel(tg);
+        $('span', fly).textContent = FLY[i];
+        fly.className = 'fly'; fly.style.transition = 'none'; fly.style.transform = 'translate(' + (b.x + b.w / 2 - 60) + 'px,' + (b.y + b.h / 2 - 16) + 'px)'; void fly.offsetWidth;
+        fly.style.transition = ''; fly.classList.add('go');
+        fly.style.transform = 'translate(' + (d.x + Math.min(d.w * .35, 120)) + 'px,' + (d.y + 6) + 'px)';
+      }, t + 150, g);
+      later(function () { fly.classList.add('end'); finish(i, false); }, t + 150 + 980, g);
+      later(function () { play((i + 1) % lps.length); }, t + 150 + 980 + 5200, g);
+    }
+    tabs.forEach(function (b, k) {
+      b.addEventListener('click', function () { idx = k; if (reduce || !running) { stopAll(); complete(k); } else { play(k); } });
+    });
+    if (reduce) { complete(0); return; }
+    complete(0);   // estado inicial legible mientras no se ve en pantalla
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) {
+        if (e.isIntersecting && !running) { running = true; play(idx); }
+        else if (!e.isIntersecting && running) { running = false; stopAll(); complete(idx); }
+      }); }, { threshold: .35 }).observe(st);
+    } else { running = true; play(0); }
+  }
+  mkSim('nmst', '#nmt button', 'nmcap', [
+      ['Cargó una <b>entrega de EPP</b> con el nombre del trabajador.', 'Ya figura en su ficha, con fecha y artículo, sin cargar nada dos veces.'],
+      ['Registró una <b>capacitación</b> y marcó a los asistentes y el protocolo.', 'La ficha suma la capacitación y el protocolo pasa de «Sin capacitar» a «Al día».'],
+      ['Cargó un <b>examen médico</b> periódico con su próximo control.', 'La ficha pasa de «Sin examen médico» a «Apto» y toma las fechas de vencimiento.'],
+      ['Dio de alta un <b>protocolo nuevo</b> como vigente.', 'En la ficha de cada trabajador aparece como pendiente de explicar y comunicar.']
+  ], ['EPP registrado', 'Capacitación registrada', 'Examen registrado', 'Protocolo nuevo']);
+  mkSim('dcst', '#dct button', 'dccap', [
+    ['Cargó el <b>Programa de Seguridad</b> renovado con su vencimiento y el archivo adjunto.', 'El documento pasa de «Vencido» a «Vigente» y los contadores se actualizan solos.'],
+    ['Subió la <b>constancia de afiliación a la ART</b> que figuraba como faltante.', 'La guía de requisitos lo marca como «Cumple» y sube el porcentaje cubierto.'],
+    ['Adjuntó el <b>plano de evacuación</b> firmado, con su fecha de revisión.', 'Queda en el legajo de la obra, listo para el próximo informe o inspección.']
+  ], ['Documento cargado', 'Constancia cargada', 'Plano adjuntado']);
 })();
