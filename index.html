@@ -398,25 +398,25 @@
   <div class="nmh">
     <span class="eyebrow rv">Planos de emergencia</span>
     <h2 class="title rv" style="--d:.06s">Dibuje el plano y <span class="grad">simule la evacuación</span> antes del simulacro.</h2>
-    <p class="lead rv" style="--d:.12s">proHS trae su propio editor de planos: dibuja los muros y las puertas, coloca los símbolos de seguridad, ubica a las personas y el sistema calcula cuánto tardan en salir, traza las rutas sugeridas y revisa el plano contra la normativa. El mismo editor sirve para el layout de gestión de residuos.</p>
+    <p class="lead rv" style="--d:.12s">proHS trae su propio editor de planos: dibuja los muros y las puertas, coloca los símbolos de seguridad, ubica a las personas y el sistema calcula cuánto tardan en salir, dibuja las flechas de evacuación y revisa el plano contra la normativa. El mismo editor sirve para el layout de gestión de residuos.</p>
     <div class="tpills rv" style="--d:.18s"><span><i class="fa-solid fa-pen-ruler"></i> Editor de planos</span><span><i class="fa-solid fa-person-running"></i> Simulador de evacuación</span><span><i class="fa-solid fa-cube"></i> Vista 3D</span><span><i class="fa-solid fa-building"></i> Varias plantas</span><span><i class="fa-solid fa-recycle"></i> Layout de residuos</span></div>
   </div>
   <div class="plmain">
     <div class="browser rv plv"><div class="bar"><i></i><i></i><i></i><span>proHS · Planos de evacuación · Simulación</span></div>
-      <video id="plvid" muted loop playsinline preload="none" poster="assets/img/doc/evac-sim-poster.jpg" aria-label="Simulación de evacuación: las personas del plano salen por las puertas siguiendo las rutas trazadas"><source src="assets/vid/evac-sim.mp4" type="video/mp4"></video></div>
+      <video id="plvid" muted loop playsinline preload="none" poster="assets/img/doc/evac-sim-poster.jpg" aria-label="Simulación de evacuación: las personas del plano salen por las puertas siguiendo las flechas de evacuación y, al final, los resultados del cálculo"><source src="assets/vid/evac-sim.mp4" type="video/mp4"></video></div>
     <div class="plft rv" style="--d:.1s">
       <h3>Del dibujo al resultado, sin salir de proHS</h3>
       <ul>
         <li><i class="fa-solid fa-pen-ruler"></i><span><b>Dibuja y pone escala real.</b> Muros, puertas, salidas, extintores, botiquín, luces de emergencia y más, con símbolos según IRAM 10005 e ISO 7010. Mide en el plano para calibrar los metros.</span></li>
         <li><i class="fa-solid fa-people-group"></i><span><b>Ubica a las personas</b> por grupos, juntas o muy dispersas, con comportamiento ideal o natural y una variación al azar para repetir el ensayo.</span></li>
-        <li><i class="fa-solid fa-route"></i><span><b>Calcula y anima.</b> Tiempo total de evacuación, recorrido más largo, espera en cada salida y una animación con las personas saliendo. Un botón traza las rutas sugeridas.</span></li>
+        <li><i class="fa-solid fa-route"></i><span><b>Calcula y anima.</b> Tiempo total de evacuación, recorrido más largo, espera en cada salida y una animación con las personas saliendo. Un botón dibuja las flechas de evacuación.</span></li>
         <li><i class="fa-solid fa-clipboard-check"></i><span><b>Verifica el plano</b> contra el Decreto 351/79: ancho de salidas, distancia a la salida y al extintor, y le avisa qué falta cargar.</span></li>
         <li><i class="fa-solid fa-cube"></i><span><b>Vista 3D, varias plantas y PDF.</b> Evacuación de edificios con más de un piso y un PDF listo para imprimir.</span></li>
       </ul>
     </div>
   </div>
   <div class="plgal">
-    <figure class="rv"><div class="browser" data-zoom data-group="planos" data-full="assets/img/doc/evac-editor.jpg" data-title="Editor del plano de evacuación" data-cap="Muros, salidas, extintores, luces, grupos de personas y rutas dibujadas sobre una cuadrícula con escala."><div class="bar"><i></i><i></i><i></i><span>Editor de planos</span></div><img src="assets/img/doc/evac-editor.jpg" alt="Editor del plano de evacuación con símbolos, rutas y grupos de personas" loading="lazy" width="1500" height="1084"></div><figcaption><b>El editor.</b> Barra de herramientas, imán a muros, modo ortogonal y rutas de escape.</figcaption></figure>
+    <figure class="rv"><div class="browser" data-zoom data-group="planos" data-full="assets/img/doc/evac-editor.jpg" data-title="Editor del plano de evacuación" data-cap="Muros, salidas, extintores, luces, grupos de personas y flechas de evacuación dibujadas sobre una cuadrícula con escala."><div class="bar"><i></i><i></i><i></i><span>Editor de planos</span></div><img src="assets/img/doc/evac-editor.jpg" alt="Editor del plano de evacuación con símbolos, flechas de evacuación y grupos de personas" loading="lazy" width="1500" height="1302"></div><figcaption><b>El editor.</b> Barra de herramientas, imán a muros, modo ortogonal y rutas de escape.</figcaption></figure>
     <figure class="rv" style="--d:.08s"><div class="browser" data-zoom data-group="planos" data-full="assets/img/doc/evac-sim.jpg" data-title="Resultado de la simulación" data-cap="Tiempo estimado, personas evacuadas, recorrido más largo y detalle por salida."><div class="bar"><i></i><i></i><i></i><span>Simulación de evacuación</span></div><img src="assets/img/doc/evac-sim.jpg" alt="Resultados de la simulación: tiempo, personas y detalle por salida" loading="lazy" width="1400" height="784"></div><figcaption><b>Los números.</b> Tiempo por salida, espera máxima y quién sale último.</figcaption></figure>
     <figure class="rv" style="--d:.16s"><div class="browser" data-zoom data-group="planos" data-full="assets/img/doc/evac-3d.jpg" data-title="Vista 3D" data-cap="El mismo plano en 3D, para orbitar y recorrer."><div class="bar"><i></i><i></i><i></i><span>Vista 3D</span></div><img src="assets/img/doc/evac-3d.jpg" alt="Vista 3D del plano de evacuación" loading="lazy" width="1400" height="1002"></div><figcaption><b>Vista 3D.</b> Para mostrar el plano a quien no lee planos.</figcaption></figure>
   </div>
@@ -425,7 +425,7 @@
     <div class="pph">
       <span class="eyebrow">Plano en PDF</span>
       <h3>Y el plano sale listo para imprimir y colgar.</h3>
-      <p>Cuando el plano está terminado, un botón genera el PDF en <b>A3 o A4</b> (el sistema le pregunta la hoja): plano con símbolos y rutas, referencias, teléfonos de emergencia, instrucciones ante una evacuación y la normativa de base. Es el cartel para exhibir en la obra o en la oficina.</p>
+      <p>Cuando el plano está terminado, un botón genera el PDF en <b>A3 o A4</b> (el sistema le pregunta la hoja): plano con símbolos y flechas de evacuación, referencias, teléfonos de emergencia, instrucciones ante una evacuación y la normativa de base. Es el cartel para exhibir en la obra o en la oficina.</p>
       <a class="dlb" href="assets/pdf/Plano-de-evacuacion-ejemplo.pdf" target="_blank" rel="noopener" download><i class="fa-solid fa-file-pdf"></i> Ver el PDF de ejemplo <small>A3 · 1 página</small></a>
     </div>
     <figure class="paper" data-zoom data-group="pdfs" data-full="assets/img/doc/pdf-evac.jpg" data-title="Plano de evacuación en PDF" data-cap="PDF generado por proHS con datos de ejemplo: plano, referencias, teléfonos de emergencia e instrucciones. Hoja A3."><img src="assets/img/doc/pdf-evac.jpg" alt="Plano de evacuación exportado a PDF en hoja A3" loading="lazy" width="1600" height="1132"></figure>
