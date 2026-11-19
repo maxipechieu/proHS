@@ -368,12 +368,6 @@
       ['Cargó un <b>examen médico</b> periódico con su próximo control.', 'La ficha pasa de «Sin examen médico» a «Apto» y toma las fechas de vencimiento.'],
       ['Dio de alta un <b>protocolo nuevo</b> como vigente.', 'En la ficha de cada trabajador aparece como pendiente de explicar y comunicar.']
   ], ['EPP registrado', 'Capacitación registrada', 'Examen registrado', 'Protocolo nuevo']);
-  mkSim('dcst', '#dct button', 'dccap', [
-    ['Cargó el <b>Programa de Seguridad</b> renovado con su vencimiento y el archivo adjunto.', 'El documento pasa de «Vencido» a «Vigente» y los contadores se actualizan solos.'],
-    ['Subió la <b>constancia de afiliación a la ART</b> que figuraba como faltante.', 'La guía de requisitos lo marca como «Cumple» y sube el porcentaje cubierto.'],
-    ['Adjuntó el <b>plano de evacuación</b> firmado, con su fecha de revisión.', 'Queda en el legajo de la obra, listo para el próximo informe o inspección.']
-  ], ['Documento cargado', 'Constancia cargada', 'Plano adjuntado']);
-
   /* ---------- modo liviano automático ---------- */
   (function () {
     var root = document.documentElement;
