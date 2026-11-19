@@ -69,3 +69,4 @@ body.idle .dkbar{opacity:0}
 
 /* calendario animado: más compacto en el escenario 1280×720 */
 .dkstage .calw{min-height:322px}.dkstage .cwc{height:42px}.dkstage .bx.cal{gap:22px}
+.dkstage .dtour{margin-top:4px;max-width:1120px}.dkstage .dtgrid{grid-template-columns:minmax(0,1fr) 300px;gap:20px}.dkstage .dtst{padding:10px 13px}.dkstage .dtst .ds p{font-size:13px}
