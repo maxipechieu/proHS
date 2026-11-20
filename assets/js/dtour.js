@@ -18,12 +18,12 @@
 
   // cada pantalla: [x, y, ancho, alto] en píxeles de la ventana original (1440 × 1000)
   var B = {
-    tileOk: [336, 489, 250, 86], tilePv: [602, 489, 250, 86],
-    panel: [336, 575, 1048, 114], rgHead: [337, 374, 1046, 66],
+    tileOk: [336, 549, 250, 86], tilePv: [602, 549, 250, 86],
+    panel: [336, 635, 1048, 114], rgHead: [337, 433, 1046, 66],
     prov: [352, 294, 272, 38], rubro: [639, 294, 172, 34], prog: [353, 453, 1013, 102], req1: [354, 700, 1012, 180],
     tabHab: [512, 130, 134, 36], tabInc: [654, 130, 133, 36], faltante: [336, 280, 1048, 136], add: [336, 732, 208, 40],
     tipo: [408, 224, 624, 48], venc: [408, 410, 304, 50], resp: [728, 410, 304, 50], file: [408, 746, 624, 44], save: [408, 850, 493, 50],
-    ok: [842, 531, 106, 42], nuevo: [336, 578, 1048, 258], legajo: [966, 193, 216, 40]
+    ok: [842, 531, 106, 42], nuevo: [336, 578, 1048, 258], legajo: [967, 132, 216, 40]
   };
   // beats: s = paso, f = captura que se ve antes de mover el cursor, t = [caja, fx, fy], hl = caja a resaltar, c = captura que aparece al hacer clic, w = pausa (ms)
   var BEATS = [
